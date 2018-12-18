@@ -1,6 +1,8 @@
 /** put an array in ascending order
-find the index of the smallest number and swap with the first element in the array
-selection sort
+ * start from index 0, find the index of the smallest number
+ *  swap with the first element in the selected array
+ *  increasingly shrink the array and swap the smallest with the first element
+ * selection sort
 */
 
 public class ArrayOrder {

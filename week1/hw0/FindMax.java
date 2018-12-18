@@ -1,5 +1,5 @@
 public class FindMax {
-    /** Returns the maximum value from m. */
+    /** Returns the maximum value from array m. */
     public static int max(int[] m) {
     	int max = 0;
     	for(int i = 0; i < m.length; i++){

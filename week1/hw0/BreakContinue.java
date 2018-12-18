@@ -1,6 +1,9 @@
 public class BreakContinue {
   public static void windowPosSum(int[] a, int n) {
-    /** your code here */ 
+    /** Write a function windowPosSum(int[] a, int n) that replaces each element a[i] 
+     * with the sum of a[i] through a[i + n], but only if a[i] is positive valued. 
+     * If there are not enough values because we reach the end of the array, 
+     * we sum only as many values as we have. */ 
     for(int i = 0; i < a.length; i++){
       /** continue the loop if negative value encountered */
        if(a[i] < 0){
