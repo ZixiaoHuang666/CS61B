@@ -1,5 +1,6 @@
-import static org.junit.Assert.*;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class DogTest {    
     @Test
@@ -13,4 +14,14 @@ public class DogTest {
         Dog d = new Dog(20);
         assertEquals("bark", d.noise());
     }
+
+    @Test
+    public void testStatic() {
+        Dog poppa = new Dog(3);
+        poppa.bark();
+//        Dog.bark();
+        poppa.runFast();
+        Dog.runFast();
+    }
+
 }
