@@ -1,5 +1,7 @@
 # skeleton-sp18
-mostly code assignments/reviews/practice on this Berkeley CS61B 2018 Spring course
+This is mostly code assignments/reviews/practice on this Berkeley CS61B 2018 Spring course.
+This is a recording process of learning, so there might be mistakes and flaws.
+Please follow the Berkeley CS61B course structure.
 
 
 # add sub-module library
