@@ -135,6 +135,13 @@ public class IntList{
 		return next.get(index - 1);
 	}
 
+	/** not efficient, not straight-forward */
+	public void addFirst(int x){
+		next = new IntList(first, next);
+
+		first = x;
+	}
+
 	public static void main(String[] args){
 
     /** code will work even without constructor */
@@ -188,5 +195,11 @@ public class IntList{
 		System.out.println(a.next.first);
 		System.out.println(a.next.next.first);
 
+		a = new IntList(4,null);
+		a.addFirst(5);
+		a.addFirst(8);
+		System.out.println(a.first);
+		System.out.println(a.next.first);
+		System.out.println(a.next.next.first);
 	}
 }
