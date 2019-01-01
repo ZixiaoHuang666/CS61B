@@ -19,6 +19,7 @@ public class IntNode{
 		while(r.next != null){
 
 			if(r.item == r.next.item){
+				/** r always has reference, but r.next only have one reference */
 				r.next = r.next.next;
 				r.item = r.item * 2;
 				r = p;
