@@ -48,5 +48,12 @@ public class NBody{
 			 StdDraw.pause(10);
 			 t = t+dt;
 		 }
+		 StdOut.printf("%d\n", universe.length);
+		 StdOut.printf("%.2e\n", radius);		
+		 for (int i = 0; i < universe.length; i++) {
+		 StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+         universe[i].xxPos, universe[i].yyPos, universe[i].xxVel,
+         universe[i].yyVel, universe[i].mass, universe[i].imgFileName);   
+		}
 	}
 }
