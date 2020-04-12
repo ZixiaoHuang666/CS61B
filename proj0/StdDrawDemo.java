@@ -98,8 +98,8 @@ public class StdDrawDemo {
 
 	public static void main(String[] args) {
 		
-		drawThree();
+//		drawThree();
 //		drawRandom();
-//		drawZoom();
+		drawZoom();
 	}
 } 
