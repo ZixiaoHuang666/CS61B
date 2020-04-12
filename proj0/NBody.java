@@ -2,7 +2,7 @@
 public class NBody{ 
 
 	public static String background = "images/starfield.jpg";
-	//读取文件 返回radius 最开始没有申明静态方法，导致报错，Test文件类调用
+
 	public static double readRadius(String addr){
         In in = new In(addr);
         in.readInt();
