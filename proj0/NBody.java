@@ -1,7 +1,7 @@
 
 public class NBody{ 
 
-	public static String background = "images/starfield.jpg";
+	private static String background = "images/starfield.jpg";
 
 	public static double readRadius(String addr){
         In in = new In(addr);
