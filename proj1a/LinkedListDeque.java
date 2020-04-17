@@ -60,7 +60,7 @@ public class LinkedListDeque<T> {
 
     //Returns the number of items in the deque.
     public int size() {
-        return size;
+        return size <= 0 ? 0 : size;
     }
 
     // Prints the items in the deque from first to last, separated by a space.
