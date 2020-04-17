@@ -1,129 +1,133 @@
-import java.util.LinkedList;
-
-/** CS61B project 1a
- *  @author:ZixiaoHuang
+/**
+ * CS61B project 1a
+ *
+ * @author:ZixiaoHuang
  */
-
 public class LinkedListDeque<T> {
-	private class LinkedNode {
-		private T item;
-		private LinkedNode next;
-		private LinkedNode previous;
+    private class LinkedNode {
+        private T item;
+        private LinkedNode next;
+        private LinkedNode previous;
 
-		public LinkedNode(T item, LinkedNode next, LinkedNode previous) {
-			this.item = item;
-			this.next = next;
-			this.previous = previous;
-		}
-	}
-	/** sentinal.previous = first
-	 *  sentinal.next = last
-	 * */
-	private int size;
-	private LinkedNode sentinal;
+        LinkedNode(T item, LinkedNode next, LinkedNode previous) {
+            this.item = item;
+            this.next = next;
+            this.previous = previous;
+        }
+    }
 
-	public LinkedListDeque() {
-		this.sentinal = new LinkedNode(null,null,null);
-		sentinal.previous = sentinal.next = sentinal;
-		size = 0;
-	}
+    /**
+     * sentinal.previous = first
+     * sentinal.next = last
+     */
+    private int size;
+    private LinkedNode sentinal;
+
+    public LinkedListDeque() {
+        this.sentinal = new LinkedNode(null, null, null);
+        sentinal.previous = sentinal.next = sentinal;
+        size = 0;
+    }
 
 
+    // Adds an item of type T to the front of the deque.
+    public void addFirst(T item) {
 
-	// Adds an item of type T to the front of the deque.
-	public void addFirst(T item) {
- 		sentinal.previous = new LinkedNode(item,sentinal.previous,sentinal);
- 		if(size == 0){
- 			sentinal.next =sentinal.previous;
-		}
- 		size++;
-	}
+        sentinal.next = new LinkedNode(item, sentinal.next, sentinal);
+        //update
+        sentinal.next.next.previous = sentinal.next;
+        if (size == 0) {
+            sentinal.previous = sentinal.next;
+        }
 
-	//Adds an item of type T to the back of the deque
-	public void addLast(T item) {
-		sentinal.next = new LinkedNode(item,sentinal.next,sentinal);
-		if(size == 0){
-			sentinal.previous =sentinal.next;
-		}
-		size++;
-	}
+        size++;
+    }
 
-	//Returns true if deque is empty, false otherwise.
-	public boolean isEmpty() {
-		if(size == 0) {
-			return true;
-		}
-		return false;
-	}
+    //Adds an item of type T to the back of the deque
+    public void addLast(T item) {
+        sentinal.previous = new LinkedNode(item, sentinal, sentinal.previous);
+        sentinal.previous.previous.next = sentinal.previous;
+        if (size == 0) {
+            sentinal.next = sentinal.previous;
+        }
+        size++;
+    }
 
-	//Returns the number of items in the deque.
-	public int size() {
-         return size;
-	}
+    //Returns true if deque is empty, false otherwise.
+    public boolean isEmpty() {
+        return (size == 0);
+    }
 
-	// Prints the items in the deque from first to last, separated by a space.
-	public void printDeque() {
-		if(isEmpty()){
-			return;
-		}
-		LinkedNode p = sentinal;
-		for(int i =0; i < size; i++) {
-			System.out.println(p.previous.item + " ");
-			p = p.next;
-		}
-	}
-	//Removes and returns the item at the front of the deque.
-	// If no such item exists, returns null.
-	public T removeFirst() {
-		if (sentinal.previous == null) {
-			return null;
-		}
-		T result = sentinal.previous.item;
-		sentinal.previous = sentinal.previous.next;
-		sentinal.previous.previous = sentinal;
-		size--;
-		return result;
-	}
+    //Returns the number of items in the deque.
+    public int size() {
+        return size;
+    }
 
-	// Removes and returns the item at the back of the deque.
-	// If no such item exists, returns null.
-	public T removeLast() {
-		if (sentinal.next == null) {
-			return null;
-		}
-		T result = sentinal.next.item;
-		sentinal.next = sentinal.next.previous;
-		sentinal.next.next = sentinal;
-		size--;
-		return result;
-	}
+    // Prints the items in the deque from first to last, separated by a space.
+    public void printDeque() {
+        if (isEmpty()) {
+            return;
+        }
+        LinkedNode p = sentinal;
+        for (int i = 0; i < size; i++) {
+            System.out.println(p.next.item + " ");
+            p = p.next;
+        }
+    }
 
-	//Gets the item at the given index, where 0 is the front,
-	// 1 is the next item, and so forth. If no such item exists,
-	// returns null. Must not alter the deque!
-	public T get(int index) {
-		if (index >= size || size == 0){
-			return null;
-		}
-		LinkedNode p = sentinal.previous;
-		while(index != 0) {
-			p = p.next;
-			index--;
-		}
-		return p.item;
-	}
+    //Removes and returns the item at the front of the deque.
+    // If no such item exists, returns null.
+    public T removeFirst() {
+        if (sentinal.next == null) {
+            return null;
+        }
+        T result = sentinal.next.item;
+        sentinal.next = sentinal.next.next;
+        sentinal.next.previous = sentinal;
+        size--;
+        return result;
+    }
 
-	public T getRecursive(int index) {
-		if(index >= size || size == 0) {
-			return null;
-		}
-		return getRecursive(index, sentinal.previous);
-	}
+    // Removes and returns the item at the back of the deque.
+    // If no such item exists, returns null.
+    public T removeLast() {
+        if (sentinal.previous == null) {
+            return null;
+        }
+        T result = sentinal.previous.item;
+        sentinal.previous = sentinal.previous.previous;
+        sentinal.previous.next = sentinal;
+        size--;
+        return result;
+    }
 
-	private  T getRecursive(int r, LinkedNode A) {
-		if (r == 0) {
-			return A.item;
-		}
-		return getRecursive(r - 1, A.next);
-	}
+    //Gets the item at the given index, where 0 is the front,
+    // 1 is the next item, and so forth. If no such item exists,
+    // returns null. Must not alter the deque!
+    public T get(int index) {
+        if (index >= size || size == 0) {
+            return null;
+        }
+        LinkedNode p = sentinal.next;
+        while (index != 0) {
+            p = p.next;
+            index--;
+        }
+        return p.item;
+    }
+
+    public T getRecursive(int index) {
+        if (index >= size || size == 0) {
+            return null;
+        }
+        return getRecursive(index, sentinal.next);
+    }
+
+    private T getRecursive(int r, LinkedNode A) {
+        if (r == 0) {
+            return A.item;
+        }
+        return getRecursive(r - 1, A.next);
+    }
+
 }
