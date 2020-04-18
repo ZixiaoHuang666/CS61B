@@ -25,6 +25,9 @@ public class ArrayDeque<T> {
         if (nextfirst == -1) {
             nextfirst = items.length - 1;
         }
+        if (nextlast == items.length) {
+            nextlast = 0;
+        }
         if (nextfirst == nextlast) {
             resize(2 * items.length);
         }
@@ -38,6 +41,9 @@ public class ArrayDeque<T> {
 
         if (nextlast == items.length) {
             nextlast = 0;
+        }
+        if (nextfirst == -1) {
+            nextfirst = items.length - 1;
         }
         if (nextfirst == nextlast) {
             resize(2 * items.length);
@@ -123,8 +129,10 @@ public class ArrayDeque<T> {
         T[] items2 = (T[]) new Object[compacity];
         if (nextfirst != 0) {
             System.arraycopy(items, 0, items2, 0, nextlast);
-            int number = items.length - nextfirst - 1;
-            System.arraycopy(items, nextfirst + 1, items2, items2.length - number, number);
+            if (nextfirst + 1 != items.length) {
+                int number = items.length - nextfirst - 1;
+                System.arraycopy(items, nextfirst + 1, items2, items2.length - number, number);
+            }
             nextfirst = nextfirst + items2.length - items.length;
         } else {
             System.arraycopy(items, 0, items2, 0, items.length);
