@@ -25,6 +25,9 @@ public class ArrayDeque<T> {
         if (nextfirst == -1) {
             nextfirst = items.length - 1;
         }
+        if (nextfirst == nextlast) {
+            resize(2 * items.length);
+        }
         items[nextfirst] = item;
         nextfirst--;
         size++;
@@ -35,6 +38,9 @@ public class ArrayDeque<T> {
 
         if (nextlast == items.length) {
             nextlast = 0;
+        }
+        if (nextfirst == nextlast) {
+            resize(2 * items.length);
         }
         items[nextlast] = item;
         nextlast++;
@@ -71,9 +77,7 @@ public class ArrayDeque<T> {
         if (size == 0) {
             return null;
         }
-        if (size == items.length) {
-            resize();
-        }
+
         nextfirst++;
         T result = items[nextfirst];
         items[nextfirst] = null;
@@ -104,15 +108,18 @@ public class ArrayDeque<T> {
         return items[nextfirst + 1 + index];
     }
 
-    private void resize() {
-        T[] resizedArray = (T[]) new Object[items.length * 2];
-        System.arraycopy(items, 0, resizedArray, 0, nextfirst + 1);
-        if ((nextfirst + 1) != items.length) {
-            System.arraycopy(items, nextfirst + 1, resizedArray, items.length + nextfirst + 1,
-                    items.length - nextfirst - 1);
+    private void resize(int compacity) {
+        T[] items2 = (T[]) new Object[compacity];
+        System.arraycopy(items, 0, items2, 0, nextlast);
+
+        if (nextfirst != 0) {
+            int number = items.length - nextfirst - 1;
+            System.arraycopy(items, nextfirst + 1, items2, items2.length - 1 - number, number);
+            nextfirst = nextfirst + items2.length - items.length;
+        } else {
+            nextlast = items.length;
         }
-        items = resizedArray;
-        nextfirst = nextfirst + resizedArray.length / 2;
+        items = items2;
     }
 
 
