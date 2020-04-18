@@ -148,18 +148,18 @@ public class ArrayDeque<T> {
     }
 
     private void halfresize() {
-        T[] items2 = (T[]) new Object[(int) 0.5 * items.length];
-        if (nextfirst != 0) {
-            System.arraycopy(items, 0, items2, 0, nextlast);
-            if (nextfirst + 1 != items.length) {
-                int number = items.length - nextfirst - 1;
-                System.arraycopy(items, nextfirst + 1, items2, items2.length - number, number);
-            }
-            nextfirst = nextfirst - (int) 0.5 * items.length;
+        int compacity = items.length/2;
+        T[] items2 = (T[]) new Object[compacity];
+        if (nextfirst < nextlast) {
+            System.arraycopy(items, nextfirst + 1, items2, 1, size);
+            nextfirst = 0;
+            nextlast = size + 1;
+            items = items2;
         } else {
-            System.arraycopy(items, 0, items2, 0, items.length);
+            int number = items.length - nextfirst - 1;
+            System.arraycopy(items, nextfirst + 1, items2, items2.length - number, number);
+            System.arraycopy(items, 0, items2, 0, nextlast);
         }
-        items = items2;
     }
 
 }

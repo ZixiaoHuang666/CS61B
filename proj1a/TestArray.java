@@ -69,7 +69,42 @@ public class TestArray {
         int result7 = p.removeFirst();     //==> 21
         int result8 = p.get(0);
         assertEquals(12, result8);
-
-
+    }
+    @Test
+    public void testresize(){
+        ArrayDeque<Integer> p = new ArrayDeque<>();
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addFirst(1);
+        p.addLast(2);
+        p.addLast(3);
+        p.removeLast();
+        p.removeLast();
+        p.removeLast();
+        p.removeLast();
+        p.removeLast();
+        p.removeLast();
+        p.removeLast();
+        p.removeLast();
+        p.removeLast();
+        p.removeLast();
+        p.removeFirst();
+        p.removeFirst();
+        p.removeFirst();
+        p.removeFirst();
+        p.removeFirst();
+        int result = p.removeFirst();
+        assertEquals(1,result);
     }
 }
