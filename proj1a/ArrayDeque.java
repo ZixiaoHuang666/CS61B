@@ -102,21 +102,26 @@ public class ArrayDeque<T> {
     // 1 is the next item, and so forth. If no such item exists,
     // returns null. Must not alter the deque!
     public T get(int index) {
-        if (index + 1 + nextfirst >= items.length) {
-            return (items[index + nextfirst + 1 - items.length]);
+        if (index > items.length || items == null) {
+            return null;
         }
-        return items[nextfirst + 1 + index];
+        if (nextfirst + index < items.length) {
+            return items[nextfirst + index + 1];
+        } else {
+            return items[nextfirst + index - items.length];
+        }
+
     }
 
     private void resize(int compacity) {
         T[] items2 = (T[]) new Object[compacity];
-        System.arraycopy(items, 0, items2, 0, nextlast);
-
         if (nextfirst != 0) {
+            System.arraycopy(items, 0, items2, 0, nextlast);
             int number = items.length - nextfirst - 1;
             System.arraycopy(items, nextfirst + 1, items2, items2.length - 1 - number, number);
             nextfirst = nextfirst + items2.length - items.length;
         } else {
+            System.arraycopy(items, 0, items2, 0, items.length);
             nextlast = items.length;
         }
         items = items2;

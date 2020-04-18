@@ -6,21 +6,25 @@ import static org.junit.Assert.*;
 public class TestArray {
     @Test
     public void testaddget() {
-        ArrayDeque<Integer> p = new ArrayDeque<>(); //3,2,1,4,5
-        p.addFirst(0);
-        p.addFirst(0);
-        p.addFirst(0);
+        ArrayDeque<Integer> p = new ArrayDeque<>(); //0,1,2,3,4,5,6,7,8
         p.addLast(0);
-        p.addLast(0);
-        p.addLast(0);
-        p.addLast(0);
-        p.addLast(0);
-        int result = p.get(0);
-        int result2 = p.get(7);
+        p.addLast(1);
+        p.addLast(2);
+        p.addLast(3);
+        p.addLast(4);
+        p.addLast(5);
+        p.addLast(6);
+        p.addLast(7);
+        p.addLast(8);
+        int result1 = p.removeFirst();
+        int result3 = p.removeFirst();
+        int result2 = p.removeLast();
         int expected = 0;
-        int expected2 = 0;
-        assertEquals(expected, result);
+        int expected2 = 8;
+        int expected3 = 1;
+        assertEquals(expected, result1);
         assertEquals(expected2, result2);
+        assertEquals(expected3, result3);
     }
 
     @Test
