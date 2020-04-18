@@ -46,4 +46,23 @@ public class TestArray {
         int expected = 10;
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testremove() {
+        ArrayDeque<Integer> p = new ArrayDeque<>();
+        p.addFirst(0);
+        p.addFirst(1);
+        p.addFirst(2);
+        p.addFirst(3);
+        p.addFirst(4);
+        p.addFirst(5);
+        p.addFirst(6);
+        p.addFirst(7);
+        int result = p.removeFirst();
+        int result2 = p.removeFirst();
+        assertEquals(7, result);
+        assertEquals(6, result2);
+
+
+    }
 }
