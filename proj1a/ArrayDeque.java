@@ -155,10 +155,12 @@ public class ArrayDeque<T> {
             nextfirst = 0;
             nextlast = size + 1;
             items = items2;
+
         } else {
             int number = items.length - nextfirst - 1;
             System.arraycopy(items, nextfirst + 1, items2, items2.length - number, number);
             System.arraycopy(items, 0, items2, 0, nextlast);
+            items = items2;;
         }
     }
 
