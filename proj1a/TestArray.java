@@ -71,7 +71,7 @@ public class TestArray {
         assertEquals(12, result8);
     }
     @Test
-    public void testresize(){
+    public void testresize() {
         ArrayDeque<Integer> p = new ArrayDeque<>();
         p.addFirst(1);
         p.addFirst(1);
@@ -105,6 +105,6 @@ public class TestArray {
         p.removeFirst();
         p.removeFirst();
         int result = p.removeFirst();
-        assertEquals(1,result);
+        assertEquals(1, result);
     }
 }

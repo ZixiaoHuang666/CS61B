@@ -148,7 +148,7 @@ public class ArrayDeque<T> {
     }
 
     private void halfresize() {
-        int compacity = items.length/2;
+        int compacity = items.length / 2;
         T[] items2 = (T[]) new Object[compacity];
         if (nextfirst < nextlast) {
             System.arraycopy(items, nextfirst + 1, items2, 1, size);
@@ -160,7 +160,7 @@ public class ArrayDeque<T> {
             int number = items.length - nextfirst - 1;
             System.arraycopy(items, nextfirst + 1, items2, items2.length - number, number);
             System.arraycopy(items, 0, items2, 0, nextlast);
-            items = items2;;
+            items = items2;
         }
     }
 
