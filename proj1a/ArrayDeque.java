@@ -95,7 +95,7 @@ public class ArrayDeque<T> {
             return null;
         }
         nextlast--;
-        if (nextlast <= 0) {
+        if (nextlast < 0) {
             nextlast = nextlast + items.length;
         }
         T result = items[nextlast];
