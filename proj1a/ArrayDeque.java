@@ -29,7 +29,7 @@ public class ArrayDeque<T> {
             nextlast = 0;
         }
         if (nextfirst == nextlast) {
-            resize(2 * items.length);
+            doubleresize();
         }
         items[nextfirst] = item;
         nextfirst--;
@@ -46,7 +46,7 @@ public class ArrayDeque<T> {
             nextfirst = items.length - 1;
         }
         if (nextfirst == nextlast) {
-            resize(2 * items.length);
+            doubleresize();
         }
         items[nextlast] = item;
         nextlast++;
@@ -91,6 +91,9 @@ public class ArrayDeque<T> {
         T result = items[nextfirst];
         items[nextfirst] = null;
         size--;
+        if ((double) size / items.length < 0.25 && items.length >= 16) {
+            halfresize();
+        }
         return result;
     }
 
@@ -107,6 +110,9 @@ public class ArrayDeque<T> {
         T result = items[nextlast];
         items[nextlast] = null;
         size--;
+        if ((double) size / items.length < 0.25 && items.length >= 16) {
+            halfresize();
+        }
         return result;
     }
 
@@ -125,15 +131,15 @@ public class ArrayDeque<T> {
 
     }
 
-    private void resize(int compacity) {
-        T[] items2 = (T[]) new Object[compacity];
+    private void doubleresize() {
+        T[] items2 = (T[]) new Object[2 * items.length];
         if (nextfirst != 0) {
             System.arraycopy(items, 0, items2, 0, nextlast);
             if (nextfirst + 1 != items.length) {
                 int number = items.length - nextfirst - 1;
                 System.arraycopy(items, nextfirst + 1, items2, items2.length - number, number);
             }
-            nextfirst = nextfirst + items2.length - items.length;
+            nextfirst = nextfirst + items.length;
         } else {
             System.arraycopy(items, 0, items2, 0, items.length);
             nextlast = items.length;
@@ -141,5 +147,19 @@ public class ArrayDeque<T> {
         items = items2;
     }
 
+    private void halfresize() {
+        T[] items2 = (T[]) new Object[(int) 0.5 * items.length];
+        if (nextfirst != 0) {
+            System.arraycopy(items, 0, items2, 0, nextlast);
+            if (nextfirst + 1 != items.length) {
+                int number = items.length - nextfirst - 1;
+                System.arraycopy(items, nextfirst + 1, items2, items2.length - number, number);
+            }
+            nextfirst = nextfirst - (int) 0.5 * items.length;
+        } else {
+            System.arraycopy(items, 0, items2, 0, items.length);
+        }
+        items = items2;
+    }
 
 }
