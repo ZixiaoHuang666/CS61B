@@ -52,16 +52,14 @@ public class TestArray {
         ArrayDeque<Integer> p = new ArrayDeque<>();
         p.addFirst(0);
         p.addFirst(1);
-        p.addFirst(2);
+        int result1 = p.removeFirst();
         p.addFirst(3);
-        p.addFirst(4);
-        p.addFirst(5);
-        p.addFirst(6);
-        p.addFirst(7);
-        int result = p.removeFirst();
         int result2 = p.removeFirst();
-        assertEquals(7, result);
-        assertEquals(6, result2);
+        int result3 = p.removeFirst();
+        assertEquals(1, result1);
+        assertEquals(3, result2);
+        assertEquals(0, result3);
+
 
 
     }

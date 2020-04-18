@@ -79,6 +79,9 @@ public class ArrayDeque<T> {
         }
 
         nextfirst++;
+        if(nextfirst >= items.length) {
+            nextfirst = nextfirst - items.length;
+        }
         T result = items[nextfirst];
         items[nextfirst] = null;
         size--;
@@ -92,6 +95,9 @@ public class ArrayDeque<T> {
             return null;
         }
         nextlast--;
+        if(nextlast <= 0) {
+            nextlast = nextlast + items.length;
+        }
         T result = items[nextlast];
         items[nextlast] = null;
         size--;
