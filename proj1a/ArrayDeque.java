@@ -114,7 +114,7 @@ public class ArrayDeque<T> {
         if (nextfirst + index < items.length) {
             return items[nextfirst + index + 1];
         } else {
-            return items[nextfirst + index - items.length];
+            return items[nextfirst + index + 1 - items.length];
         }
 
     }

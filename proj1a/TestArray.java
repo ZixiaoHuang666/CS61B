@@ -49,17 +49,15 @@ public class TestArray {
 
     @Test
     public void testremove() {
-        ArrayDeque<Integer> p = new ArrayDeque<>();
-        p.addLast(0);
-        p.addLast(1);
-        int result1 = p.removeFirst();
-        p.addFirst(3);
-        int result2 = p.removeFirst();
-        int result3 = p.removeFirst();
-        assertEquals(0, result1);
-        //assertEquals(3, result2);
-        //assertEquals(0, result3);
+        ArrayDeque<Integer> p = new ArrayDeque<>();   //  5,4,0,1,3
+        p.addFirst(1);
+        p.removeFirst();
+        p.removeLast();
+        int result = p.size();
 
+        assertEquals(0, result);
+        // assertEquals(6,result2);
+        //assertEquals(0,result3);
 
 
     }
