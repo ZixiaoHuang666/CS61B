@@ -25,8 +25,20 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
-        for (int i = 0; i < word.length() / 2; i++) {
-            if (!cc.equalChars(word.charAt(i), word.charAt(word.length() - 1 - i))) {
+        int len = word.length();
+
+        if (len == 0 || len == 1) {
+            return true;
+        }
+
+        int l = 0;
+        int r = len - 1;
+
+        while (l < r) {
+            if (cc.equalChars(word.charAt(l), word.charAt(r))) {
+                l += 1;
+                r -= 1;
+            } else {
                 return false;
             }
         }

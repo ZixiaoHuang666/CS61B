@@ -3,7 +3,7 @@
  *
  * @author:ZixiaoHuang
  */
-public class LinkedListDeque<T> implements Deque<T>{
+public class LinkedListDeque<T> implements Deque<T> {
     private class LinkedNode {
         private T item;
         private LinkedNode next;
